@@ -1,10 +1,10 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class LoopExample {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-
 //        //for loop that runs 3 times
 //        for (int i = 0; i < 3; i++) {
 //            String textInput = input.nextLine();
