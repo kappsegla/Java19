@@ -1,6 +1,5 @@
 package ovn;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.Scanner;
 
 public class Uppg21 {
@@ -17,13 +16,27 @@ public class Uppg21 {
         } else {
 
             char tecken = input.toLowerCase().charAt(0);
-
             //System.out.println((int)tecken);
             //System.out.println(tecken);
 
             if (tecken >= 'a' && tecken <= 'z') {// || tecken >= 'A' && tecken <= 'Z'){
+                // A, E, I, O, U, Y
+                //Alt method
+                //String vokaler = "aeiouy";
+                //if( vokaler.contains(input.toLowerCase()))
 
-
+                switch (tecken) {
+                    case 'a':
+                    case 'e':
+                    case 'i':
+                    case 'o':
+                    case 'u':
+                    case 'y':
+                        System.out.println("Vokal");
+                        break;
+                    default:
+                        System.out.println("Konsonant");
+                }
 
 
             }
