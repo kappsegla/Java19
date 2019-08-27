@@ -36,6 +36,7 @@ public class MethodsExample {
     }
 
     public static int add(int x, int y) {
+        System.out.println("This is int version");
         return x + y;
     }
 
@@ -44,6 +45,7 @@ public class MethodsExample {
     }
 
     public static double add(double x, double y) {
+        System.out.println("This is double version");
         return x + y;
     }
 
