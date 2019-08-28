@@ -17,7 +17,7 @@ public class Recursive {
 
     //https://stackoverflow.com/questions/49397611/inefficient-recursive-code-to-produce-fibonacci-number-in-java
 
-    static int n1 = 0, n2 = 1, n3 = 0;  //Memorization of last two calculated values
+    static long n1 = 0, n2 = 1, n3 = 0;  //Memorization of last two calculated values
 
     static void printFibonacci(int count) {
         if (count > 0) {
@@ -38,20 +38,22 @@ public class Recursive {
         //System.out.println("Print before " + count);
 
         recursionTemplate(count - 1);
-        //System.out.println("Print after " + count);
+   //     System.out.println("Print after " + count);
         //Place code here for counting up
     }
 
 
     public static void main(String[] args) {
-        System.out.println("The 0th fibonacci number is: " + fib(0));
-        System.out.println("The 7th fibonacci number is: " + fib(7));
-        System.out.println("The 12th fibonacci number is: " + fib(12));
-        //System.out.println("The 12th fibonacci number is: " + fib(48));
+//        recursionTemplate(10);
+//        System.out.println("The 0th fibonacci number is: " + fib(0));
+//        System.out.println("The 7th fibonacci number is: " + fib(7));
+//        System.out.println("The 12th fibonacci number is: " + fib(12));
+//        System.out.println("The 12th fibonacci number is: " + fib(48));
 
-        //printFibonacci(20);
-
-        recursionTemplate(10);
+        printFibonacci(10);
+        System.out.println("");
+        n1 = 0; n2 = 1; n3 = 0;
+        printFibonacci(10);
 
     }
 

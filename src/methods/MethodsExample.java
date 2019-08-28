@@ -6,10 +6,6 @@ public class MethodsExample {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        //int x = 2;
-        //printMultiplicationTable(x);
-        //double sum = add(1,2);
-
         double tax = calculateTax(230000);
         System.out.println(tax);
 
@@ -17,7 +13,6 @@ public class MethodsExample {
 
         int income = Integer.parseInt(input);
         System.out.println(calculateTax(income));
-
     }
 
     public static double calculateTax(int income) {
@@ -27,7 +22,6 @@ public class MethodsExample {
             return income * 0.3;
         }
     }
-
 
     public static void printMultiplicationTable(int tableNumber) {
         for (int i = 1; i <= 10; i++) {
@@ -48,6 +42,4 @@ public class MethodsExample {
         System.out.println("This is double version");
         return x + y;
     }
-
-
 }
