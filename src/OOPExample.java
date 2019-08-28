@@ -6,8 +6,10 @@ import java.util.Locale;
 public class OOPExample {
 
     public static void main(String[] args) {
+        //https://sv.wikipedia.org/wiki/ISO_639
+        //https://sv.wikipedia.org/wiki/ISO_3166
         Locale.setDefault(new Locale("sv", "SE"));
-        Locale.setDefault(new Locale("en", "US"));
+        //Locale.setDefault(new Locale("en", "US"));
 
         Vehicle v1 = new Vehicle("Ford Galaxy", 7, 50, 20.0f);
         Vehicle v2 = new Vehicle("Subaru WRX", 4, 40, 15.0f, true);
