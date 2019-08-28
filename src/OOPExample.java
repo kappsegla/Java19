@@ -1,11 +1,28 @@
+import ovn.Vehicle;
+
+import java.util.Locale;
+
+
 public class OOPExample {
 
     public static void main(String[] args) {
+        Locale.setDefault(new Locale("sv", "SE"));
+        Locale.setDefault(new Locale("en", "US"));
 
-        Circle c1 = new Circle(1.0);
+        Vehicle v1 = new Vehicle("Ford Galaxy", 7, 50, 20.0f);
+        Vehicle v2 = new Vehicle("Subaru WRX", 4, 40, 15.0f, true);
+        Vehicle v3 = new Vehicle("Subaru WRX", 4, 40, 15.0f, true);
 
-        System.out.println(c1.isFilled());
-        System.out.println(c1.getRadius());
+        System.out.format("Mpg: %.1f", v3.getMpg() );
+
+
+
+
+//
+//        Circle c1 = new Circle(1.0);
+//
+//        System.out.println(c1.isFilled());
+//        System.out.println(c1.getRadius());
 
 //
 //
