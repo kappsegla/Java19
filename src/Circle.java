@@ -27,6 +27,7 @@ public class Circle {
     }
     //</editor-fold>
 
+    //Convenience methods written as getters but without backing fields.
     public double getCircumference(){
         return radius * 2.0 * Math.PI;
     }
