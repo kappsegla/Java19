@@ -25,12 +25,12 @@ public class StringList {
     public void add(String s) {
         if (count > array.length - 1) {
             //Create new array with more space
-            String[] newArray = new String[array.length + (int)(array.length * 0.5)];
+            String[] newArray = new String[array.length + (int) (array.length * 0.5) + 1];
             //Copy old array to new array
-            
+            System.arraycopy(array, 0, newArray, 0, array.length);
 
-            //Remove old array
-
+            //Set newArray as active array
+            array = newArray;
         }
         array[count] = s;
         count++;
