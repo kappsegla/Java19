@@ -15,9 +15,7 @@ public class OOPExample {
         Vehicle v2 = new Vehicle("Subaru WRX", 4, 40, 15.0f, true);
         Vehicle v3 = new Vehicle("Subaru WRX", 4, 40, 15.0f, true);
 
-        System.out.format("Mpg: %.1f", v3.getMpg() );
-
-
+        System.out.format("Mpg: %.1f", v3.getMpg());
 
 
 //
