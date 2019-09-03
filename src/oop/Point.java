@@ -15,15 +15,20 @@ public class Point {
         this.y = y;
     }
 
+    public Point(double[] values) {
+        this.x = values[0];
+        this.y = values[1];
+    }
+
     //Copy constructor
     public Point(Point other) {
         this.x = other.x;
         this.y = other.y;
     }
 
-    public double distanceTo(Point other) {
-        double a = this.x - other.x;
-        double b = this.y - other.y;
+    public double distanceTo(Point second) {
+        double a = this.x - second.x;
+        double b = this.y - second.y;
         return Math.sqrt(a * a + b * b);
     }
 
