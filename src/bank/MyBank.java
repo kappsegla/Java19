@@ -1,5 +1,6 @@
 package bank;
 
+import javax.security.auth.login.AccountException;
 import java.util.Scanner;
 
 public class MyBank {
@@ -12,8 +13,9 @@ public class MyBank {
         while (true) {
             printMenu();
             String choice = scanner.nextLine();
-            switch (choice){
+            switch (choice) {
                 case "1":
+                    createAccount();
                     break;
                 case "2":
                     break;
@@ -26,6 +28,13 @@ public class MyBank {
                     return;
             }
         }
+    }
+
+    private void createAccount() {
+        Account account = new Account();
+
+
+
     }
 
     private void printMenu() {
