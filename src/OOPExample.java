@@ -19,7 +19,7 @@ public class OOPExample {
 
 
 //
-//        Circle c1 = new Circle(1.0);
+//        polymorphism.Circle c1 = new polymorphism.Circle(1.0);
 //
 //        System.out.println(c1.isFilled());
 //        System.out.println(c1.getRadius());

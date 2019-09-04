@@ -1,8 +1,12 @@
+package polymorphism;
+
 public class Circle {
 
     //Fields
     private double radius;
-    private boolean filled;
+
+    //Default Constructor
+    public Circle() {}
 
     //Constructor
     public Circle(double radius) {
@@ -18,13 +22,6 @@ public class Circle {
         this.radius = radius;
     }
 
-    public boolean isFilled() {
-        return filled;
-    }
-
-    public void setFilled(boolean filled) {
-        this.filled = filled;
-    }
     //</editor-fold>
 
     //Convenience methods written as getters but without backing fields.
