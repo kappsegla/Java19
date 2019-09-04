@@ -2,6 +2,7 @@ package bank;
 
 import javax.security.auth.login.AccountException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MyBank {
@@ -10,6 +11,7 @@ public class MyBank {
     }
 
     private Scanner scanner = new Scanner(System.in);
+    private ArrayList<Account> accounts = new ArrayList<>();
 
     private void run() {
 
@@ -21,10 +23,13 @@ public class MyBank {
                     createAccount();
                     break;
                 case "2":
+                    depositToAccount();
                     break;
                 case "3":
+                    withDraw();
                     break;
                 case "4":
+                    showSaldo();
                     break;
                 case "e":
                 case "E":
@@ -33,16 +38,45 @@ public class MyBank {
         }
     }
 
+    private void showSaldo() {
+        System.out.print("Account number: ");
+        long accountId = Integer.parseInt(scanner.nextLine());
+        Account account = accounts.get((int) accountId);
+        System.out.println(account.getSaldo().toString());
+    }
+
+    private void depositToAccount() {
+        Account account = getAccount();
+        account.deposit(getAmount());
+        showSaldo();
+    }
+
+    private void withDraw() {
+        Account account = getAccount();
+        account.withdraw(getAmount());
+        showSaldo();
+    }
+
+    private Account getAccount() {
+        System.out.print("Account number: ");
+        long accountId = Integer.parseInt(scanner.nextLine());
+        return accounts.get((int) accountId);
+    }
+
+    private BigDecimal getAmount() {
+        System.out.print("Amount: ");
+        String amount = scanner.nextLine();
+        //Regular expression
+        if (amount.matches("^\\d*\\.\\d+|\\d+\\.\\d*$")) {
+            return new BigDecimal(amount);
+        }
+        return BigDecimal.ZERO;
+    }
+
     private void createAccount() {
         Account account = new Account();
-        System.out.println(account.getSaldo().toString());
-        String depositAmount = scanner.nextLine();
-        //Regular expression
-        if ( depositAmount.matches("^\\d*\\.\\d+ | \\d+\\.\\d*$") ) {
-            BigDecimal amount = new BigDecimal(depositAmount);
-            account.deposit(amount);
-        }
-        System.out.println(account.getSaldo().toString());
+        System.out.format("Account created with id: %d\n", account.getId());
+        accounts.add(account);
     }
 
     private void printMenu() {

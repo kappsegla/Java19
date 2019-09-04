@@ -26,4 +26,8 @@ public class Account {
     public BigDecimal getSaldo() {
         return saldo;
     }
+
+    public long getId() {
+        return id;
+    }
 }
