@@ -39,9 +39,7 @@ public class MyBank {
     }
 
     private void showSaldo() {
-        System.out.print("Account number: ");
-        long accountId = Integer.parseInt(scanner.nextLine());
-        Account account = accounts.get((int) accountId);
+        Account account = getAccount();
         System.out.println(account.getSaldo().toString());
     }
 
