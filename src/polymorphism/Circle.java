@@ -6,9 +6,14 @@ public class Circle {
     private double radius;
 
     //Default Constructor
-    public Circle() {}
+    public Circle() {
 
-    //Constructor
+    }
+
+    /**
+     * Constructor for Circle class
+     * @param radius Radius of circle as a decimal number. Avoid negative numbers.
+     */
     public Circle(double radius) {
         this.radius = radius;
     }
@@ -25,7 +30,7 @@ public class Circle {
     //</editor-fold>
 
     //Convenience methods written as getters but without backing fields.
-    public double getCircumference(){
+    public double getCircumference() {
         return radius * 2.0 * Math.PI;
     }
 
