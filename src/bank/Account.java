@@ -9,20 +9,21 @@ public class Account {
     private long id;
     private BigDecimal saldo = BigDecimal.ZERO;//new BigDecimal(0.0);
 
-    public Account(){
+    public Account() {
         id = accountCounter++;
     }
 
-    public void deposit(BigDecimal amount){
-        saldo = saldo.add(amount);
+    public void deposit(BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) >= 0)
+            saldo = saldo.add(amount);
     }
 
     public void withdraw(BigDecimal amount) {
-        if( amount.compareTo(saldo) <= 0 )
+        if (amount.compareTo(saldo) <= 0)
             saldo = saldo.subtract(amount);
     }
 
-    public BigDecimal getSaldo(){
+    public BigDecimal getSaldo() {
         return saldo;
     }
 }

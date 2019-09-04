@@ -1,6 +1,7 @@
 package bank;
 
 import javax.security.auth.login.AccountException;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class MyBank {
@@ -8,8 +9,10 @@ public class MyBank {
         new MyBank().run();
     }
 
+    private Scanner scanner = new Scanner(System.in);
+
     private void run() {
-        Scanner scanner = new Scanner(System.in);
+
         while (true) {
             printMenu();
             String choice = scanner.nextLine();
@@ -32,9 +35,14 @@ public class MyBank {
 
     private void createAccount() {
         Account account = new Account();
-
-
-
+        System.out.println(account.getSaldo().toString());
+        String depositAmount = scanner.nextLine();
+        //Regular expression
+        if ( depositAmount.matches("^\\d*\\.\\d+ | \\d+\\.\\d*$") ) {
+            BigDecimal amount = new BigDecimal(depositAmount);
+            account.deposit(amount);
+        }
+        System.out.println(account.getSaldo().toString());
     }
 
     private void printMenu() {
