@@ -42,4 +42,14 @@ public class MethodsExample {
         System.out.println("This is double version");
         return x + y;
     }
+
+    //Params arguments. Is an array.
+    public static int add(int... params){
+        int summa = 0;
+        for (int i : params ) {
+            summa += i;
+        }
+        return summa;
+    }
+
 }

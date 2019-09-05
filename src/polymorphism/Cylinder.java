@@ -28,7 +28,7 @@ public class Cylinder extends Circle {
 
     @Override
     public String toString() {
-        return "Cylinder, radius= " + getRadius() + ", height= " +height;
+        return "Cylinder, radius= " + getRadius() + ", height= " + height;
     }
 
     @Override
@@ -41,10 +41,16 @@ public class Cylinder extends Circle {
         }
         Cylinder guest = (Cylinder) obj;
         return getRadius() == guest.getRadius() &&
-                    height == guest.height;
+                height == guest.height;
     }
+
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(getRadius(),height);
+        return java.util.Objects.hash(getRadius(), height);
     }
+
+     public static void printSomething(){
+         System.out.println("Hello there");
+     }
+
 }

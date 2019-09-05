@@ -60,4 +60,8 @@ public class Circle {
     public int hashCode() {
         return java.util.Objects.hash(radius);
     }
+
+    public static void printSomething(){
+        System.out.println("printSomething");
+    }
 }
