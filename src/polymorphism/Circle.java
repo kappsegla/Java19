@@ -38,4 +38,26 @@ public class Circle {
         //return Math.pow(radius, 2) * Math.PI;
         return radius * radius * Math.PI;
     }
+
+    @Override
+    public String toString() {
+        return "Circle, radius= " + radius;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Circle guest = (Circle) obj;
+        return radius == guest.radius;
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(radius);
+    }
 }
