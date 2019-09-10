@@ -1,5 +1,8 @@
 package ovn.v3;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class Time implements Comparable {
 
     private int hour;
