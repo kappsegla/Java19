@@ -2,7 +2,6 @@ package books;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Warehouse {
 
@@ -19,7 +18,7 @@ public class Warehouse {
         warehouse.stock.add(  new BookInfo(book, 2, 149.0f));
 
         for (BookInfo bookInfo: warehouse.stock ) {
-            System.out.println( bookInfo.book.getTitle() );
+            System.out.println( bookInfo );
         }
 
 
