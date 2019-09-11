@@ -2,7 +2,7 @@ package pets;
 
 import java.io.Serializable;
 
-public class Cat implements Pet, LegInfo {
+public class Cat extends Mammal implements Pet {
 
     @Override
     public boolean isCute() {
@@ -10,8 +10,7 @@ public class Cat implements Pet, LegInfo {
     }
 
     @Override
-    public int numberOfLegs() {
-        return 4;
+    public boolean laysEggs() {
+        return false;
     }
-
 }

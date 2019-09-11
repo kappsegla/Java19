@@ -1,5 +1,5 @@
 package pets;
 
-public interface LegInfo {
+public interface Journey {
     int numberOfLegs();
 }

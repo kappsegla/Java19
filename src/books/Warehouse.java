@@ -21,6 +21,8 @@ public class Warehouse {
         books.add(book);
         author.books.add(book);
 
+        Book book1 = new Book("", null, "",123,LocalDate.now());
+
         stock.add(  new BookInfo(book, 10, 179.0f));
         book = new Book("Javaprogrammering", author ,"Lär dig Java",215, LocalDate.now(), new Dimensions(110,179,23,105));
         stock.add(  new BookInfo(book, 2, 149.0f));
