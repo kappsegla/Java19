@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Author {
     String firstName;
     String lastName;
-    //ArrayList<Book> books = new ArrayList<>();
+    ArrayList<Book> books = new ArrayList<>();
 
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
