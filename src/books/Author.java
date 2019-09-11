@@ -1,12 +1,15 @@
 package books;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Author {
     String firstName;
     String lastName;
     ArrayList<Book> books = new ArrayList<>();
+
 
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
