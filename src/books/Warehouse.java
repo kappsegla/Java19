@@ -13,20 +13,15 @@ public class Warehouse {
 
         Author author = new Author("Martin", "Blomberg");
         Book book = new Book("Martins påhitt", author ,"Massa blaj",2345, LocalDate.now());
+        //author.books.add(book);
+
         warehouse.stock.add(  new BookInfo(book, 10, 179.0f));
-        book = new Book("Javaprogrammering", author ,"Lär dig Java",215, LocalDate.now());
+        book = new Book("Javaprogrammering", author ,"Lär dig Java",215, LocalDate.now(), new Dimensions(110,179,23,105));
         warehouse.stock.add(  new BookInfo(book, 2, 149.0f));
 
         for (BookInfo bookInfo: warehouse.stock ) {
             System.out.println( bookInfo );
         }
-
-
-
-
-
-
-
 
     }
 }
