@@ -1,6 +1,7 @@
 package ovn.v4;
 
 public class ResizableRectangle extends Rectangle implements Resizable {
+
     public ResizableRectangle(double l, double w) {
         super(l, w);
     }
@@ -8,7 +9,7 @@ public class ResizableRectangle extends Rectangle implements Resizable {
     @Override
     public void resize(int percent) {
         double p = percent / 100.0;
-        setLength(getLength() * p);
-        setWidth(getWidth() * p);
+        setLength( getLength() * p);
+        setWidth( getWidth() * p);
     }
 }

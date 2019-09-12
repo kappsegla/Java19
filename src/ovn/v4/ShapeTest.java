@@ -1,5 +1,7 @@
 package ovn.v4;
 
+import java.util.Arrays;
+
 import static ovn.v4.ShapeType.*;
 
 public class ShapeTest {
@@ -37,8 +39,15 @@ public class ShapeTest {
         if( shape2 instanceof Resizable)
             ((Resizable) shape2).resize(200);
         viewShapeInfo(shape2);
-
-
-
+//         Shape[] shapes = new Shape[4];
+//         shapes[0] = createShape(RECTANGLE);
+//        shapes[1] = createShape(RECTANGLE);
+//        shapes[2] = createShape(ELLIPSE);
+//        shapes[3] = createShape(ELLIPSE);
+//        shapes[1].setLength(1.0);
+//
+//        System.out.println(Arrays.toString(shapes));
+//        Arrays.sort(shapes);
+//        System.out.println(Arrays.toString(shapes));
     }
 }

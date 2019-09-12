@@ -1,8 +1,10 @@
 package ovn.v4;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
-public abstract class Shape {
+public abstract class Shape implements Comparable<Shape> {
 
     private double length;
     private double width;
@@ -10,6 +12,11 @@ public abstract class Shape {
     public Shape(double length, double width) {
         this.length = length;
         this.width = width;
+    }
+
+    @Override
+    public int compareTo(@NotNull Shape o) {
+        return Double.compare(this.getArea(), o.getArea());
     }
 
     public abstract double getArea();
@@ -38,7 +45,7 @@ public abstract class Shape {
                 "\nLength : " + length +
                 "\nWidth  : " + width +
                 "\nPeri   : " + getPerimeter() +
-                "\nArea   : " + getArea();
+                "\nArea   : " + getArea() + "\n";
     }
 
 
@@ -57,6 +64,6 @@ public abstract class Shape {
     @Override
     public int hashCode() {
         //Includes type name in hashcode calculating to get different hashcodes for Ellipse and Rectangle
-        return Objects.hash(this.getClass().getSimpleName(),length, width);
+        return Objects.hash(this.getClass().getSimpleName(), length, width);
     }
 }

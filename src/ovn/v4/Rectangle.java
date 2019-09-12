@@ -1,8 +1,9 @@
 package ovn.v4;
 
 public class Rectangle extends Shape {
+
     public Rectangle(double l, double w) {
-        super(l,w);
+        super(l, w);
     }
 
     @Override
@@ -12,6 +13,6 @@ public class Rectangle extends Shape {
 
     @Override
     public double getPerimeter() {
-        return 2 * getLength() + 2*getWidth();
+        return 2 * getLength() + 2 * getWidth();
     }
 }
