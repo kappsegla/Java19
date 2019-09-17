@@ -5,14 +5,16 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 import static ovn.v4.ShapeType.*;
-
+import static java.lang.Math.*;
+import static ovn.v2.UppgifterV2.*;
 public class ShapeTest {
 
     public static Shape createShape(ShapeType shapeType) {
         double l = 3.0;
         double w = 2.0;
         //https://javarevisited.blogspot.com/2013/04/how-to-compare-two-enum-in-java-equals.html
-
+        sqrt(23.0);
+        isEven(34);
         switch (shapeType) {
             case ELLIPSE:
                 return new Ellipse(l, w);
