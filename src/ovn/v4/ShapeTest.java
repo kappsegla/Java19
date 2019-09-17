@@ -54,11 +54,7 @@ public class ShapeTest {
         System.out.println(Arrays.toString(shapes));
         Arrays.sort(shapes);  //Natural order for the sorting, default implementation in compareTo for Object
         System.out.println(Arrays.toString(shapes));
-        Comparator<Shape> order = new OrderShapesAccordingToWidth();
-        Arrays.sort(shapes, order );
-        System.out.println(Arrays.toString(shapes));
-        Arrays.sort(shapes, order.reversed());
-        System.out.println(Arrays.toString(shapes));
+
 //        Arrays.sort(shapes, new Comparator<Shape>() {
 //            @Override
 //            public int compare(Shape o1, Shape o2) {
