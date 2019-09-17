@@ -40,7 +40,7 @@ public class Problem {
 
         Storage<String> storage = new Storage<>();
         storage.add("Yihaa");
-       
+
 
         Map<Integer, String> map = new HashMap<>();
 
