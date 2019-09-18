@@ -55,10 +55,23 @@ public class LambdaExample {
 
         List<Person> persons = new ArrayList<>();
 
+        Map<String, Person> map = new HashMap<>();
+
+        map.put("key1", new Person("Kalle",32));
+        map.put("key2", new Person("Pelle",31));
+        Person person2 = new Person("Sven",30);
+        map.put("key3", person2);
+        map.put("key4", person2);
+
+        Person person3 = map.get("key1");
+
+        //for each uses iterator
         for ( Person person: persons  ) {
             System.out.println(person);
         }
 
+
+        //Here we are using an iterator ourself
         Iterator<Person> personIterator = persons.iterator();
 
         while( personIterator.hasNext() )
@@ -66,10 +79,6 @@ public class LambdaExample {
             Person p = personIterator.next();
             System.out.println(p);
         }
-
-
-
-
 
         persons.add(new Person("Martin", 40));
         persons.add(new Person("Martin", 32));
