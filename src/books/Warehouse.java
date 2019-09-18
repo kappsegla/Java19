@@ -51,19 +51,12 @@ public class Warehouse {
                                     .filter(b -> b.getPages() > 100)
                                     .collect(Collectors.toList());
         ////
-
 //        List<Book> filteredBooksOldStyle = new ArrayList<>();
 //        for (Book b: books ) {
 //            if( b.getTitle().startsWith("Java") && b.getPages() > 100 )
 //                filteredBooksOldStyle.add(b);
 //        }
-        
+
         System.out.println(filteredBooks);
-
-
-
-
-
-
     }
 }
