@@ -1,10 +1,7 @@
 package lamda;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.DoubleFunction;
 
@@ -54,11 +51,25 @@ public class LambdaExample {
 //        le.printValue(myValue);
 //        le.printValue(myValue);
 
-
-
-
+        Set<String> set = new HashSet<>();
 
         List<Person> persons = new ArrayList<>();
+
+        for ( Person person: persons  ) {
+            System.out.println(person);
+        }
+
+        Iterator<Person> personIterator = persons.iterator();
+
+        while( personIterator.hasNext() )
+        {
+            Person p = personIterator.next();
+            System.out.println(p);
+        }
+
+
+
+
 
         persons.add(new Person("Martin", 40));
         persons.add(new Person("Martin", 32));
