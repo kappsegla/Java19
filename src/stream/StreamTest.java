@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -57,10 +58,46 @@ public class StreamTest {
         Path path = Paths.get("file.txt");
         Stream<String> streamOfStrings = Files.lines(path);
 
-        System.out.println( streamOfStrings.count() );
+       // streamOfStrings.map().collect(Collectors.toList());
 
 
 
+    }
+}
+
+class Person {
+    private String name;
+    private int age;
+    private int iq;
+
+    public Person(String name, int age, int iq) {
+        this.name = name;
+        this.age = age;
+        this.iq = iq;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getIq() {
+        return iq;
+    }
+
+    public void setIq(int iq) {
+        this.iq = iq;
     }
 }
 
