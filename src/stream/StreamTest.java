@@ -1,11 +1,14 @@
 package stream;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.function.Consumer;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -32,9 +35,13 @@ public class StreamTest {
         Car[] cars = new Car[]{new Car("Volvo", 5), new Car("Saab", 1), new Car("Opel", 2)};
 
         System.out.println(Arrays.stream(cars)
+                .peek(s->System.out.println("Before filter:" + s.getType()))
                 .filter(car -> car.getType().equals("Volvo") || car.getType().equals("Opel"))
+                .peek(s->System.out.println("After filter:" + s.getType()))
                 .mapToInt(c -> c.getPassengers())
-                .sum());
+                .limit(1)
+                .sum()
+                );
         /////
         //List from array
         List<Car> carList = Arrays.asList(cars);
@@ -48,20 +55,23 @@ public class StreamTest {
 
         /////
         //Java 11, Stream.of  List.of...
-    //    Stream.of(1,2,3,2,1).forEach(System.out::println);
-
-        List<String> strings = List.of("1","2","3","4");
+        //Stream.of(1,2,3,2,1).forEach(System.out::println);
+        List<String> strings = List.of("1", "2", "3", "4");
         System.out.println(strings.stream().mapToInt(Integer::parseInt)
                 .sum());
 
         /////
+        //Create a stream of strings from a text file utf-8
         Path path = Paths.get("file.txt");
         Stream<String> streamOfStrings = Files.lines(path);
+        var persons = streamOfStrings.skip(1).dropWhile(x -> x.startsWith("M")).map(StreamTest::stringToPerson)
+                .collect(Collectors.toList());
+        System.out.println(persons);
+    }
 
-       // streamOfStrings.map().collect(Collectors.toList());
-
-
-
+    public static Person stringToPerson(String text) {
+        String[] columns = text.split(",");
+        return new Person(columns[0],Integer.parseInt(columns[1]),Integer.parseInt(columns[2]));
     }
 }
 
@@ -98,6 +108,15 @@ class Person {
 
     public void setIq(int iq) {
         this.iq = iq;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", iq=" + iq +
+                '}';
     }
 }
 
