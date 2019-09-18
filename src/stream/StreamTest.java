@@ -1,12 +1,16 @@
 package stream;
 
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         //Create stream with static helper methods on Stream class
         System.out.println(IntStream.range(0, 10).sum());
@@ -43,19 +47,18 @@ public class StreamTest {
 
         /////
         //Java 11, Stream.of  List.of...
-       // Stream.of(1,2,3,2,1)
+    //    Stream.of(1,2,3,2,1).forEach(System.out::println);
 
-
-
-
-
-
-
-
+        List<String> strings = List.of("1","2","3","4");
+        System.out.println(strings.stream().mapToInt(Integer::parseInt)
+                .sum());
 
         /////
-//        Path path = Paths.get("file.txt");
-//        Stream<String> streamOfStrings = Files.lines(path);
+        Path path = Paths.get("file.txt");
+        Stream<String> streamOfStrings = Files.lines(path);
+
+        System.out.println( streamOfStrings.count() );
+
 
 
     }
