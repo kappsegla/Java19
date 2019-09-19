@@ -1,5 +1,6 @@
 package exceptions;
 
+import javax.sound.sampled.Clip;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +11,6 @@ public class ExceptionsExample {
 
 
     public static void main(String[] args) {
-
         //This code will be run last when the application is shutting down.
         //Do cleanup here, save unsaved changes.
         Runtime.getRuntime().addShutdownHook(
