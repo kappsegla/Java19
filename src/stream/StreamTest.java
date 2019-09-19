@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamTest {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
 
         //Create stream with static helper methods on Stream class
         System.out.println(IntStream.range(0, 10).sum());
@@ -63,7 +63,12 @@ public class StreamTest {
         /////
         //Create a stream of strings from a text file utf-8
         Path path = Paths.get("file.txt");
-        Stream<String> streamOfStrings = Files.lines(path);
+        Stream<String> streamOfStrings = null;
+        try {
+            streamOfStrings = Files.lines(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         var persons = streamOfStrings.skip(1).dropWhile(x -> x.startsWith("M")).map(StreamTest::stringToPerson)
                 .collect(Collectors.toList());
         System.out.println(persons);
