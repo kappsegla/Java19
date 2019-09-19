@@ -50,8 +50,7 @@ public class StreamTest {
                 .filter(car -> car.getType().equals("Volvo"))
                 .findFirst();
 
-        if (volvo.isPresent())
-            System.out.println(volvo.get().getType());
+        volvo.ifPresent(car -> System.out.println(car.getType()));
 
         /////
         //Java 11, Stream.of  List.of...
