@@ -1,5 +1,7 @@
 package files;
 
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,16 @@ public class FileJsonTest {
             persons.add(new Person("Martin", 402343533));
 
             //TODO: Save as Json to file
+            Gson gson = new Gson();
+            String json = gson.toJson(persons);
 
+            try {
+                FileWriter out = new FileWriter(filePath);
+                out.write(json);
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
