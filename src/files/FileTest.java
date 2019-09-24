@@ -1,53 +1,59 @@
 package files;
 
-import java.io.*;
-import java.security.spec.RSAPrivateCrtKeySpec;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FileTest {
     public static void main(String[] args) {
-
-//        InputStream inputStream = FileTest.class.getResourceAsStream("/file.txt");
-//
-//        Scanner scanner = new Scanner(inputStream);
-//        System.out.println( scanner.nextLine() );
-        //Absolute path
-//        File filePath = new File("C:\\Users\\Martin\\Documents\\GitHub\\Java19\\resources\\file.txt");
-        //Relative path
-        File filePath = new File("..\\Java19\\resources\\file.txt");
-        try {
-          //  FileReader in = new FileReader(filePath);
-            Scanner sc = new Scanner(filePath);
-            while (sc.hasNext())
-                System.out.println(sc.nextLine());
-            sc.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
         String path = System.getProperty("user.home") +
                 File.separator + "Documents" +
                 File.separator + "CustomFolder";
 
         File dir = new File(path);
 
-        if( dir.exists() )
+        if (dir.exists())
             System.out.println("Folder exists");
-        else if(dir.mkdir())
+        else if (dir.mkdir())
             System.out.println("Folder created");
         else
             System.out.println("Folder not created");
 
-        File filePath2 = new File(path + File.separator + "outputfile.txt");
+        File filePath = new File(path + File.separator + "savefile.csv");
+
+        List<Person> persons = new ArrayList<>();
+
+
+        if (filePath.exists()) {
+            try {
+                Scanner sc = new Scanner(filePath);
+                while (sc.hasNext()) {
+                    String line = sc.nextLine();
+                    String[] fields = line.split(",");
+                    Person person = new Person(fields[0], Integer.parseInt(fields[1]));
+                    persons.add(person);
+                }
+                sc.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(persons);
+
+        persons.add(new Person("Martin", 402343533));
+
         try {
-            FileWriter out = new FileWriter(filePath2,false);
-            out.write("Test");
-           // out.flush();
+            FileWriter out = new FileWriter(filePath);
+            for (Person p : persons) {
+                out.write(p.getName() + "," + p.getAge() + "\n");
+            }
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }
