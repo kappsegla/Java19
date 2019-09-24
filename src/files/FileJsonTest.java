@@ -29,12 +29,11 @@ public class FileJsonTest {
 
         List<Person> persons = new ArrayList<>();
         Gson gson = new Gson();
+        //https://github.com/google/gson/blob/master/UserGuide.md#TOC-Serializing-and-Deserializing-Generic-Types
+        Type fooType = new TypeToken<ArrayList<Person>>() {
+        }.getType();
 
         if (filePath.exists()) {
-
-            Type fooType = new TypeToken<ArrayList<Person>>() {
-            }.getType();
-
             try {
                 FileReader fileReader = new FileReader(filePath);
                 persons = gson.fromJson(fileReader, fooType);
@@ -46,7 +45,7 @@ public class FileJsonTest {
 
         persons.add(new Person("Martin", 402343533));
 
-        String json = gson.toJson(persons);
+        String json = gson.toJson(persons, fooType);
 
         try {
             FileWriter out = new FileWriter(filePath);
