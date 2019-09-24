@@ -1,7 +1,5 @@
 package stream;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -61,7 +59,7 @@ public class StreamTest {
 
         /////
         //Create a stream of strings from a text file utf-8
-        Path path = Paths.get("file.txt");
+        Path path = Paths.get("file2.txt");
         Stream<String> streamOfStrings = null;
         try {
             streamOfStrings = Files.lines(path);

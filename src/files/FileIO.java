@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 public class FileIO {
 
     public static void readTextFileFromResources() throws IOException {
-        try (InputStream inputStream = FileIO.class.getResourceAsStream("/file.txt")) {
+        try (InputStream inputStream = FileIO.class.getResourceAsStream("/file2.txt")) {
             Scanner sc = new Scanner(inputStream);
             while (sc.hasNext())
                 System.out.println(sc.nextLine());
