@@ -36,7 +36,10 @@ public class FileJsonTest {
         if (filePath.exists()) {
             try {
                 FileReader fileReader = new FileReader(filePath);
-                persons = gson.fromJson(fileReader, fooType);
+                //We can't use generic types with fromJson direct. Use one of these methods instead:
+                //persons = gson.fromJson(fileReader, fooType ); //Use a typeToken
+                persons = gson.fromJson(fileReader, PersonList.class ); //Extend ArrayList<Person> as a non generic class
+                //persons = getList(fileReader,Person.class);  //Helper method that encapsulates typeToken.
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -54,6 +57,11 @@ public class FileJsonTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static <T> List<T> getList(FileReader fileReader, Class<T> clazz) {
+        Type typeOfT = TypeToken.getParameterized(List.class, clazz).getType();
+        return new Gson().fromJson(fileReader, typeOfT);
     }
 }
 
