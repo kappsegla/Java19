@@ -63,5 +63,9 @@ public class FileJsonTest {
         Type typeOfT = TypeToken.getParameterized(List.class, clazz).getType();
         return new Gson().fromJson(fileReader, typeOfT);
     }
+    public static <T> List<T> getList(String json, Class<T> clazz) {
+        Type typeOfT = TypeToken.getParameterized(List.class, clazz).getType();
+        return new Gson().fromJson(json, typeOfT);
+    }
 }
 
