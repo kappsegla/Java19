@@ -2,10 +2,7 @@ package files.example;
 
 import files.Person;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,7 +26,6 @@ public class FileTest {
 
         List<Person> persons = new ArrayList<>();
 
-
         if (filePath.exists()) {
             try {
                 Scanner sc = new Scanner(filePath);
@@ -48,12 +44,10 @@ public class FileTest {
 
         persons.add(new Person("Martin", 402343533));
 
-        try {
-            FileWriter out = new FileWriter(filePath);
+        try (FileWriter out = new FileWriter(filePath)) {
             for (Person p : persons) {
                 out.write(p.getName() + "," + p.getAge() + "\n");
             }
-            out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
