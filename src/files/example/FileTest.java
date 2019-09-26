@@ -1,12 +1,17 @@
 package files.example;
 
 import books.Author;
+import exceptions.CheckedConsumer;
+import exceptions.CheckedFunction;
+import exceptions.StreamsAndExceptions;
 import files.Person;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class FileTest extends FileTestTest {
     public static void main(String[] args) {
@@ -39,13 +44,25 @@ public class FileTest extends FileTestTest {
 
         //Export
         //exportFile(filePath, persons);
-        FileExporter fileExporter = new PersonFileExporter(persons);
-        fileExporter.exportFile(filePath);
+        //   FileExporter fileExporter = new PersonFileExporter(persons);
+        //   fileExporter.exportFile(filePath);
+
+        Exporter exporter = new Exporter();
+        exporter.exportFile(filePath, wrap(fileWriter -> {
+            for (Person p : persons) {
+               fileWriter.write(p.getName() + "," + p.getAge() + "\n");
+            }
+        }));
 
         File authorsFilePath = new File(path + File.separator + "authors.csv");
         //exportAuthorsFile(authorsFilePath, authors);
-        fileExporter = new AuthorFileExporter(authors);
-        fileExporter.exportFile(authorsFilePath);
+        //fileExporter = new AuthorFileExporter(authors);
+        //fileExporter.exportFile(authorsFilePath);
+        exporter.exportFile(authorsFilePath, wrap(fileWriter -> {
+            for (Author a : authors) {
+                fileWriter.write(a.getFirstName() + "," + a.getLastName() + "\n");
+            }
+        }));
     }
 
     private static void importFile(File filePath, List<Person> persons) {
@@ -80,20 +97,26 @@ public class FileTest extends FileTestTest {
             e.printStackTrace();
         }
     }
+
+    public static <T> Consumer<T> wrap(CheckedConsumer<T> checkedFunction) {
+        return t -> {
+            try {
+                checkedFunction.apply(t);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        };
+    }
 }
 
 class Exporter {
-    public void exportFile(File filePath) {
+    public void exportFile(File filePath, Consumer<FileWriter> impl) {
         try (FileWriter out = new FileWriter(filePath)) {
             //write to file
-            writeToFile(out);
+            impl.accept(out);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void writeToFile(FileWriter out) throws IOException {
-
     }
 }
 
