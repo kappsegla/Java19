@@ -27,15 +27,13 @@ public class FileTest {
         List<Person> persons = new ArrayList<>();
 
         if (filePath.exists()) {
-            try {
-                Scanner sc = new Scanner(filePath);
+            try(Scanner sc = new Scanner(filePath);) {
                 while (sc.hasNext()) {
                     String line = sc.nextLine();
                     String[] fields = line.split(",");
                     Person person = new Person(fields[0], Integer.parseInt(fields[1]));
                     persons.add(person);
                 }
-                sc.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
