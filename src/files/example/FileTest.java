@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FileTest {
+public class FileTest extends FileTestTest {
     public static void main(String[] args) {
         String path = System.getProperty("user.home") +
                 File.separator + "Documents" +
@@ -79,6 +79,21 @@ public class FileTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+}
+
+class Exporter {
+    public void exportFile(File filePath) {
+        try (FileWriter out = new FileWriter(filePath)) {
+            //write to file
+            writeToFile(out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeToFile(FileWriter out) throws IOException {
+
     }
 }
 
