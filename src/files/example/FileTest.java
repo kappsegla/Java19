@@ -14,6 +14,9 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class FileTest extends FileTestTest {
+    static List<Person> persons = new ArrayList<>();
+    static List<Author> authors = new ArrayList<>();
+
     public static void main(String[] args) {
         String path = System.getProperty("user.home") +
                 File.separator + "Documents" +
@@ -30,8 +33,7 @@ public class FileTest extends FileTestTest {
 
         File filePath = new File(path + File.separator + "savefile.csv");
 
-        List<Person> persons = new ArrayList<>();
-        List<Author> authors = new ArrayList<>();
+
 
         persons.add(new Person("Martin", 402343533));
         authors.add(new Author("Arne", "Anka"));
@@ -48,11 +50,7 @@ public class FileTest extends FileTestTest {
         //   fileExporter.exportFile(filePath);
 
         Exporter exporter = new Exporter();
-        exporter.exportFile(filePath, wrap(fileWriter -> {
-            for (Person p : persons) {
-               fileWriter.write(p.getName() + "," + p.getAge() + "\n");
-            }
-        }));
+        exporter.exportFile(filePath, wrap(FileTest::writePerson));
 
         File authorsFilePath = new File(path + File.separator + "authors.csv");
         //exportAuthorsFile(authorsFilePath, authors);
@@ -63,6 +61,12 @@ public class FileTest extends FileTestTest {
                 fileWriter.write(a.getFirstName() + "," + a.getLastName() + "\n");
             }
         }));
+    }
+
+    public static void writePerson(FileWriter out) throws IOException{
+        for (Person p : persons) {
+                out.write(p.getName() + "," + p.getAge() + "\n");
+            }
     }
 
     private static void importFile(File filePath, List<Person> persons) {
