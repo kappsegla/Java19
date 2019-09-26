@@ -38,10 +38,14 @@ public class FileTest {
         //System.out.println(persons);
 
         //Export
-        exportFile(filePath, persons);
+        //exportFile(filePath, persons);
+        FileExporter fileExporter = new PersonFileExporter(persons);
+        fileExporter.exportFile(filePath);
 
         File authorsFilePath = new File(path + File.separator + "authors.csv");
-        exportAuthorsFile(authorsFilePath, authors);
+        //exportAuthorsFile(authorsFilePath, authors);
+        fileExporter = new AuthorFileExporter(authors);
+        fileExporter.exportFile(authorsFilePath);
     }
 
     private static void importFile(File filePath, List<Person> persons) {
