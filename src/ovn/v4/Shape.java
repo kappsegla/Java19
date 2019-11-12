@@ -66,4 +66,22 @@ public abstract class Shape implements Comparable<Shape> {
         //Includes type name in hashcode calculating to get different hashcodes for Ellipse and Rectangle
         return Objects.hash(this.getClass().getSimpleName(), length, width);
     }
+
+    public static Shape createShape(ShapeType shapeType) {
+        double l = 3.0;
+        double w = 2.0;
+        //https://javarevisited.blogspot.com/2013/04/how-to-compare-two-enum-in-java-equals.html
+        //sqrt(23.0);
+        //isEven(34);
+        switch (shapeType) {
+            case ELLIPSE:
+                return new Ellipse(l, w);
+            case RECTANGLE:
+                return new Rectangle(l, w);
+            case RESIZABLE_RECTANGLE:
+                return new ResizableRectangle(l, w);
+            default:
+                return null; //Can not happen when using enum
+        }
+    }
 }

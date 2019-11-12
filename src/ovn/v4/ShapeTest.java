@@ -9,24 +9,6 @@ import static java.lang.Math.*;
 import static ovn.v2.UppgifterV2.*;
 public class ShapeTest {
 
-    public static Shape createShape(ShapeType shapeType) {
-        double l = 3.0;
-        double w = 2.0;
-        //https://javarevisited.blogspot.com/2013/04/how-to-compare-two-enum-in-java-equals.html
-        sqrt(23.0);
-        isEven(34);
-        switch (shapeType) {
-            case ELLIPSE:
-                return new Ellipse(l, w);
-            case RECTANGLE:
-                return new Rectangle(l, w);
-            case RESIZABLE_RECTANGLE:
-                return new ResizableRectangle(l, w);
-            default:
-                return null; //Can not happen when using enum
-        }
-    }
-
     public static void viewShapeInfo(Shape shape) {
         System.out.println(shape);
     }
@@ -44,10 +26,10 @@ public class ShapeTest {
 //            ((Resizable) shape2).resize(200);
 //        viewShapeInfo(shape2);
         Shape[] shapes = new Shape[4];
-        shapes[0] = createShape(RECTANGLE);
-        shapes[1] = createShape(RECTANGLE);
-        shapes[2] = createShape(ELLIPSE);
-        shapes[3] = createShape(ELLIPSE);
+        shapes[0] = Shape.createShape(RECTANGLE);
+        shapes[1] = Shape.createShape(RECTANGLE);
+        shapes[2] = Shape.createShape(ELLIPSE);
+        shapes[3] = Shape.createShape(ELLIPSE);
         shapes[1].setLength(1.0);
         shapes[0].setWidth(10.0);
 
