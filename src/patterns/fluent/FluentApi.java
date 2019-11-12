@@ -1,5 +1,6 @@
 package patterns.fluent;
 
+import com.google.gson.Gson;
 import com.google.gson.internal.Streams;
 
 import java.util.ArrayList;
@@ -7,12 +8,11 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class FluentApi {
-    private String text;
-    private int id;
+    private String text = "";
+    private int id = 0;
     private double price;
 
-
-    public String getText() {
+   public String getText() {
         return text;
     }
 
@@ -51,7 +51,7 @@ public class FluentApi {
                 .filter(i -> i % 2 == 0)
                 .map(v -> v.toString())
                 .count();
-
-
     }
 }
+
+
