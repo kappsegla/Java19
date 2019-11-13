@@ -1,5 +1,6 @@
 package patterns.composite.arithmetic;
 
+@Deprecated
 public class SubtractionArithmetic implements Arithmetic {
     double tal1;
     double tal2;
