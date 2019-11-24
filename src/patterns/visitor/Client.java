@@ -9,8 +9,15 @@ public class Client {
 
         AnimalVisitor animalVisitor = new AnimalVisitor();
 
+        //How to know if it's a cat or dog type?
         for (Animal animal : animals) {
-            animal.accept(animalVisitor);
+            if( animal instanceof Cat){
+
+            }
+            else if( animal instanceof Dog){
+
+            }
+         //   animal.accept(animalVisitor);
         }
     }
 }
