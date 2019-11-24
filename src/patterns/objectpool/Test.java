@@ -5,7 +5,7 @@ public class Test {
 
         ObjectPool<Reusable> reusableObjectPool = new ObjectPool<>(2, Reusable::new);
 
-        ObjectPool<String> integerObjectPool = new ObjectPool<>(2,String::new);
+        //ObjectPool<String> stringObjectPool = new ObjectPool<>(2,String::new);
 
         Reusable reusable = reusableObjectPool.borrowObject();
         Reusable reusable2 = reusableObjectPool.borrowObject();

@@ -6,4 +6,8 @@ public abstract class PizzaDecorator implements Pizza {
     public PizzaDecorator(Pizza pizza) {
         this.pizza = pizza;
     }
+    @Override
+    public String toString() {
+        return getDescription();
+    }
 }

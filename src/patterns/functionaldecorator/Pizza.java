@@ -7,7 +7,7 @@ public interface Pizza {
         return 50;
     }
 
-    static Pizza Pineapple(Pizza pizza) {
+    static Pizza withPineapple(Pizza pizza) {
         return new Pizza() {
             @Override
             public String getDescription() {
@@ -20,7 +20,7 @@ public interface Pizza {
             }
         };
     }
-    static Pizza Curry(Pizza pizza) {
+    static Pizza withCurry(Pizza pizza) {
         return new Pizza() {
             @Override
             public String getDescription() {
