@@ -6,4 +6,5 @@ package patterns.visitor;
 public interface Visitor {
     void visit(Cat animal);
     void visit(Dog animal);
+    default void visit(Moose animal){}
 }
