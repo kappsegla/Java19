@@ -42,8 +42,8 @@ public class FluentApi {
     public static void main(String[] args) {
         FluentApi fluentApi = new FluentApi();
         fluentApi.setText("Text")
-                .setId(10)
-                .setPrice(2.0);
+                 .setId(10)
+                 .setPrice(2.0);
 
         Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
