@@ -1,5 +1,6 @@
 package exceptions;
 
+import javax.print.DocFlavor;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -10,10 +11,10 @@ public class StreamsAndExceptions {
         var stream = Stream.of("1", "2", "3", "4", "5", "6", "a", "b", "c");
 
         long i = 0;
-      //  i = stream.mapToInt( s->wrapper(s) ).sum();
+       // i = stream.mapToInt( s->wrapper(s) ).sum();
       //  i = stream.map( wrap(  s -> parser(s)) ).mapToInt(Integer::intValue).sum();
-   //     i = stream.mapToInt(s -> wrapper(s)).sum();
-   //     i = stream.map(wrap( s -> parser(s))).mapToInt(Integer::intValue).sum();
+      //     i = stream.mapToInt(s -> wrapper(s)).sum();
+    //     i = stream.map(wrap( s -> parser(s))).mapToInt(Integer::intValue).sum();
 
         //Uses a Either monad
         //https://en.wikipedia.org/wiki/Monad_(functional_programming)
