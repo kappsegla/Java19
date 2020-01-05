@@ -49,7 +49,7 @@ public interface Queryable<T> {
             Queryable<? extends R> result = mapper.apply(item);
             if (result != null) {
                 do {
-                } while( result.tryAdvance(action));
+                } while (result.tryAdvance(action));
             }
         });
 
@@ -69,6 +69,7 @@ public interface Queryable<T> {
             boolean[] found = {false};
             while (!found[0]) {
                 boolean hasNext = tryAdvance(item -> {
+                    System.out.println("in filter" + item);
                     if (p.test(item)) {
                         action.accept(item);
                         found[0] = true;
@@ -76,6 +77,7 @@ public interface Queryable<T> {
                 });
                 if (!hasNext) break;
             }
+
             return found[0];
         };
     }
@@ -163,19 +165,49 @@ public interface Queryable<T> {
         return null;
     }
 
-    //Does not work with flatmap...
+    //Can we short circuit in some way when used with flatMap?
     public default Queryable<T> limit(long maxSize) {
-        final int[] count = {0};
-        return action -> count[0]++ < maxSize ? tryAdvance(action) : false;
+        long[] count = {0};
+        return action -> {
+            System.out.println("in limit");
+            boolean[] found = {false};
+            while (!found[0]) {
+                boolean hasNext = tryAdvance(item -> {
+                       System.out.println("in limit: " + item);
+                    if (count[0]++ < maxSize) {
+                        action.accept(item);
+                    }
+                    else
+                        found[0] = true;
+                });
+                if (!hasNext || count[0] >= maxSize) break;
+            }
+            return false;
+        };
+
+//
+//        final int[] count = {0};
+//        return action -> {
+//            System.out.println("in limit");
+//            return count[0]++ < maxSize && tryAdvance(action);
+//        };
     }
 
-    //Does not work with flatmap...
     public default Queryable<T> skip(long n) {
-        final long[] count = {0};
-        count[0] = n;
-
-        while (count[0]-- > 0 && tryAdvance(t -> {
-        })) ;
-        return action -> tryAdvance(item -> action.accept(item));
+        long[] count = {n};
+        return action -> {
+            boolean[] found = {false};
+            while (!found[0]) {
+                boolean hasNext = tryAdvance(item -> {
+                 //   System.out.println("in skip" + item);
+                    if (count[0]-- < 1) {
+                        action.accept(item);
+                        found[0] = true;
+                    }
+                });
+                if (!hasNext) break;
+            }
+            return found[0];
+        };
     }
 }

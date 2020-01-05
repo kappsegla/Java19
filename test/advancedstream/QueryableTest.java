@@ -3,6 +3,7 @@ package advancedstream;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,7 +58,7 @@ class QueryableTest {
     void flatMapThenSkip(){
 
         List<Integer> actual = new ArrayList<>();
-        List<Integer> expected = nonFlat.stream().flatMap(integers -> integers.stream()).skip(2).collect(Collectors.toList());
+        List<Integer> expected = nonFlat.stream().flatMap(Collection::stream).skip(2).collect(Collectors.toList());
 
         Queryable.of(nonFlat)
                 .flatMap(Queryable::of)
@@ -66,4 +67,19 @@ class QueryableTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    void skipThenflatMap(){
+
+        List<Integer> actual = new ArrayList<>();
+        List<Integer> expected = nonFlat.stream().skip(2).flatMap(Collection::stream).collect(Collectors.toList());
+
+        Queryable.of(nonFlat)
+                .skip(2)
+                .flatMap(Queryable::of)
+                .forEach(actual::add);
+
+        assertEquals(expected, actual);
+    }
+
+
 }
