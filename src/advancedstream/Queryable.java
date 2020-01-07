@@ -42,7 +42,6 @@ public interface Queryable<T> {
     }
 
 
-    //Works only partially. Does not work with skip och limit.
     public default <R> Queryable<R> flatMap(Function<T, Queryable<R>> mapper) {
         return action -> tryAdvance(item ->
         {
@@ -69,7 +68,7 @@ public interface Queryable<T> {
             boolean[] found = {false};
             while (!found[0]) {
                 boolean hasNext = tryAdvance(item -> {
-                    System.out.println("in filter" + item);
+                    //         System.out.println("in filter" + item);
                     if (p.test(item)) {
                         action.accept(item);
                         found[0] = true;
@@ -77,7 +76,6 @@ public interface Queryable<T> {
                 });
                 if (!hasNext) break;
             }
-
             return found[0];
         };
     }
@@ -169,15 +167,14 @@ public interface Queryable<T> {
     public default Queryable<T> limit(long maxSize) {
         long[] count = {0};
         return action -> {
-            System.out.println("in limit");
+            //     System.out.println("in limit");
             boolean[] found = {false};
             while (!found[0]) {
                 boolean hasNext = tryAdvance(item -> {
-                       System.out.println("in limit: " + item);
+                    //                System.out.println("in limit: " + item);
                     if (count[0]++ < maxSize) {
                         action.accept(item);
-                    }
-                    else
+                    } else
                         found[0] = true;
                 });
                 if (!hasNext || count[0] >= maxSize) break;
@@ -199,7 +196,7 @@ public interface Queryable<T> {
             boolean[] found = {false};
             while (!found[0]) {
                 boolean hasNext = tryAdvance(item -> {
-                 //   System.out.println("in skip" + item);
+                    //   System.out.println("in skip" + item);
                     if (count[0]-- < 1) {
                         action.accept(item);
                         found[0] = true;
@@ -209,5 +206,58 @@ public interface Queryable<T> {
             }
             return found[0];
         };
+    }
+
+    /**
+     * Creates a new List and sorts that list before returning it. Do not use on endless sources.
+     */
+    public default Queryable<T> sorted(Comparator<T> comparator) {
+        List<T> list = new ArrayList<>();
+        while (tryAdvance(i -> list.add(i))) ;
+        list.sort(comparator);
+        return Queryable.of(list);
+    }
+
+    /**
+     * true if either no elements of the stream match the provided predicate
+     * or the stream is empty, otherwise false
+     */
+    public default boolean nonMatch(Predicate<T> p) {
+            boolean[] found = {false};
+            while (!found[0]) {
+                boolean hasNext = tryAdvance(item -> {
+                    if (p.test(item)) {
+                        found[0] = true;
+                    }
+                });
+                if (!hasNext) break;
+            }
+            return !found[0];
+    }
+
+    public default boolean anyMatch(Predicate<T> p) {
+        boolean[] found = {false};
+        while (!found[0]) {
+            boolean hasNext = tryAdvance(item -> {
+                if (p.test(item)) {
+                    found[0] = true;
+                }
+            });
+            if (!hasNext) break;
+        }
+        return found[0];
+    }
+
+    public default boolean allMatch(Predicate<T> p) {
+        boolean[] found = {true};
+        while (found[0]) {
+            boolean hasNext = tryAdvance(item -> {
+                if (!p.test(item)) {
+                    found[0] = false;
+                }
+            });
+            if (!hasNext) break;
+        }
+        return found[0];
     }
 }

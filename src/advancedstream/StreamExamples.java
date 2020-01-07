@@ -1,8 +1,7 @@
 package advancedstream;
 
 import java.sql.ClientInfoStatus;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class StreamExamples {
@@ -20,6 +19,7 @@ public class StreamExamples {
 
 
         List<List<Integer>> nonFlat = List.of(List.of(1, 2, 3), List.of(4, 5), List.of(6, 7, 8));
+        Set<Integer> set = new TreeSet<>(List.of(9,5,3,1,7,2,4,8));
 
 //        nonFlat.stream()
 //               // .peek(System.out::println)
@@ -27,15 +27,13 @@ public class StreamExamples {
 //               // .peek(System.out::println)
 //                //.limit(2)
 //                .forEach(System.out::println);
-
+//
 //        System.out.println(
-        Queryable.of(nonFlat)
-                //.peek(System.out::println)
-                .skip(1)
-                .flatMap(Queryable::of)
-                .skip(1)
-                .filter(p -> p % 2 == 0)
-                .limit(3)
-                .forEach(System.out::println);
+        System.out.println(Queryable.of(set)
+               // .sorted(Comparator.naturalOrder())
+//                .map(p-> p * Math.random())
+//                .sorted(Comparator.reverseOrder())
+                .peek(System.out::println)
+                .allMatch(p-> p < 10));
     }
 }
