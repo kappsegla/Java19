@@ -12,6 +12,15 @@ import java.util.stream.StreamSupport;
 
 //https://github.com/JosePaumard/streams-utils/tree/master/src/main/java/org/paumard/spliterators
 
+//
+//SIZED – if it's capable of returning an exact number of elements with the estimateSize() method
+//        SORTED – if it's iterating through a sorted source
+//        SUBSIZED – if we split the instance using a trySplit() method and obtain Spliterators that are SIZED as well
+//        CONCURRENT – if source can be safely modified concurrently
+//        DISTINCT – if for each pair of encountered elements x, y, !x.equals(y)
+//        IMMUTABLE – if elements held by source can't be structurally modified
+//        NONNULL – if source holds nulls or not
+//        ORDERED – if iterating over an ordered sequence
 public class SpliteratorExample {
 
     public static void main(String[] args) {
