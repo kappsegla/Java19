@@ -29,11 +29,14 @@ public class StreamExamples {
                 .forEach(System.out::println);
 
 //        System.out.println(
-        System.out.println(Queryable.of(set)
-                .sorted(Comparator.naturalOrder())
-                .map(p-> p * Math.random())
-                .sorted(Comparator.reverseOrder())
-                .peek(System.out::println)
-                .allMatch(p-> p < 10));
+//        System.out.println(Queryable.of(set)
+//                .sorted(Comparator.naturalOrder())
+//                .map(p-> p * Math.random())
+//                .sorted(Comparator.reverseOrder())
+//                .peek(System.out::println)
+//                .allMatch(p-> p < 10));
+
+        Queryable.iterate(1,i -> i+1).skip(2).map(i -> i % 2).takeWhile(p -> p < 10).forEach(System.out::println);
+
     }
 }
