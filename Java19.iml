@@ -38,5 +38,16 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="com.google.inject:guice:4.2.2" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/annotations/19.0.0/annotations-19.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" name="com.google.inject:guice:4.2.3" level="project" />
   </component>
 </module>

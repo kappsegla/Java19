@@ -24,6 +24,28 @@ public interface Queryable<T> {
         return action -> dataSrc.hasNext() && truth(action, dataSrc.next());
     }
 
+    public static <T> Queryable<T> iterate(final T seed, final UnaryOperator<T> f) {
+        Objects.requireNonNull(f);
+        return new Queryable<>(){
+            T prev;
+            boolean started;
+
+            @Override
+            public boolean tryAdvance(Consumer<? super T> action) {
+                Objects.requireNonNull(action);
+                T t;
+                if (started)
+                    t = f.apply(prev);
+                else {
+                    t = seed;
+                    started = true;
+                }
+                action.accept(prev = t);
+                return true;
+            }
+        };
+    }
+
     abstract boolean tryAdvance(Consumer<? super T> action); // <=> Spliterator::tryAdvance
 
     public default void forEach(Consumer<? super T> action) {
@@ -143,20 +165,20 @@ public interface Queryable<T> {
     //On ordered list, returns all items until predicate becomes false
     //In unordered list, undefined behavior...?
     public default Queryable<T> takeWhile(Predicate<T> p) {
-//        return action -> {
-//            boolean[] found = {false};
-//            while (!found[0]) {
-//                boolean hasNext = tryAdvance(item -> {
-//                    if (p.test(item)) {
-//                        action.accept(item);
-//                        found[0] = true;
-//                    }
-//                });
-//                if (!hasNext) break;
-//            }
-//            return found[0];
-//        };
-        return null;
+        return action -> {
+            boolean[] found = {false};
+            while (!found[0]) {
+                boolean hasNext = tryAdvance(item -> {
+                    if (p.test(item)) {
+                        action.accept(item);
+                    }
+                    else
+                        found[0] = true;
+                });
+                if (!hasNext) break;
+            }
+            return false;
+        };
     }
 
     public default Queryable<T> dropWhile(Predicate<T> p) {
@@ -223,16 +245,16 @@ public interface Queryable<T> {
      * or the stream is empty, otherwise false
      */
     public default boolean nonMatch(Predicate<T> p) {
-            boolean[] found = {false};
-            while (!found[0]) {
-                boolean hasNext = tryAdvance(item -> {
-                    if (p.test(item)) {
-                        found[0] = true;
-                    }
-                });
-                if (!hasNext) break;
-            }
-            return !found[0];
+        boolean[] found = {false};
+        while (!found[0]) {
+            boolean hasNext = tryAdvance(item -> {
+                if (p.test(item)) {
+                    found[0] = true;
+                }
+            });
+            if (!hasNext) break;
+        }
+        return !found[0];
     }
 
     public default boolean anyMatch(Predicate<T> p) {
