@@ -49,5 +49,6 @@
     </orderEntry>
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.6" level="project" />
     <orderEntry type="library" name="com.google.inject:guice:4.2.3" level="project" />
+    <orderEntry type="library" name="org.projectlombok:lombok:1.14.8" level="project" />
   </component>
 </module>
