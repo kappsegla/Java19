@@ -1,5 +1,6 @@
-package advancedstream;
+package test.java.advancedstream;
 
+import advancedstream.Queryable;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

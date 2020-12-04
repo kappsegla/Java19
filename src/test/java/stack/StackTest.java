@@ -1,7 +1,8 @@
-package stack;
+package test.java.stack;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import stack.Stack;
 
 import java.util.EmptyStackException;
 
