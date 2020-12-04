@@ -1,4 +1,16 @@
-//package puzzles.fizzbuzz;
+package puzzles.fizzbuzz;
+
+import java.util.Arrays;
+import java.util.function.BiFunction;
+import java.util.stream.Collectors;
+
+public class FizzBuzz {
+    public static void main(String[] args) {
+
+    }
+}
+
+
 //
 ////import lombok.Data;
 //
@@ -56,6 +68,7 @@
 //    }
 //
 //
+////    Pattern matching in switch in this form is not available in java... :(
 ////    static Function<Integer, String> withPatternMatching() {
 ////        return (e) -> {
 ////            switch (Pair.of(e % 3, e % 5)) {

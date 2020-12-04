@@ -30,12 +30,14 @@ import java.io.*;
  */
 public class Grid implements Cloneable {
 
+    public static final int MAX_CELLS = 81;
+
     private Grid() {
     }
 
     // Array that contains values of all 81 cells in the grid.
 
-    private int[] cells = new int[81];
+    private int[] cells = new int[MAX_CELLS];
     // A set of bit-vectors that represent the known values for each column.
     // Specifically, if column c contains the digits d1 and d2,
     //   colsSet[c] = 2^(d1-1)|2^(d2-1)
@@ -73,16 +75,16 @@ public class Grid implements Cloneable {
      *   ignored until a newline is encountered.
      * - All other characters are simply ignored.
      *
-     * @param     rd  Reader containing the givens
+     * @param     reader  Reader containing the givens
      * @return null if there are not enough characters in 'rd' to form a grid.
      */
-    public static Grid create(Reader rd) {
+    public static Grid create(Reader reader) {
         Grid grid = new Grid();
         try {
             // Read until all 81 cells are filled
-            for (int loc = 0; loc < grid.cells.length; ) {
+            for (int cellIndex = 0; cellIndex < grid.cells.length; ) {
                 // Read a character
-                int ch = rd.read();
+                int ch = reader.read();
 
                 // -1 is returned if the input stream has no more characters
                 if (ch < 0) {
@@ -92,15 +94,15 @@ public class Grid implements Cloneable {
                 if (ch == '#') {
                     // Skip to end-of-line
                     while (ch >= 0 && ch != '\n' && ch != '\r') {
-                        ch = rd.read();
+                        ch = reader.read();
                     }
                 } else if (ch >= '1' && ch <= '9') {
                     // A given
-                    grid.set(loc, ch - '0');
-                    loc++;
+                    grid.set(cellIndex, ch - '0');
+                    cellIndex++;
                 } else if (ch == '.' || ch == '0') {
                     // Empty cell
-                    loc++;
+                    cellIndex++;
                 }
             }
             return grid;
@@ -137,13 +139,13 @@ public class Grid implements Cloneable {
      */
     public boolean set(int loc, int num) {
         // Compute row and column
-        int r = loc / 9;
+        int rowIndex = rowIndex(loc);
         int c = loc % 9;
-        int blockLoc = (r / 3) * 3 + c / 3;
+        int blockLoc = (rowIndex / 3) * 3 + c / 3;
 
         boolean canSet = cells[loc] == 0
                 && (colsSet[c] & (1 << num)) == 0
-                && (rowsSet[r] & (1 << num)) == 0
+                && (rowsSet[rowIndex] & (1 << num)) == 0
                 && (subgridSet[blockLoc] & (1 << num)) == 0;
         if (!canSet) {
             return false;
@@ -151,9 +153,13 @@ public class Grid implements Cloneable {
 
         cells[loc] = num;
         colsSet[c] |= (1 << num);
-        rowsSet[r] |= (1 << num);
+        rowsSet[rowIndex] |= (1 << num);
         subgridSet[blockLoc] |= (1 << num);
         return true;
+    }
+
+    private int rowIndex(int loc) {
+        return loc / 9;
     }
 
     /*
@@ -163,7 +169,7 @@ public class Grid implements Cloneable {
      */
     public void clear(int loc) {
         // Compute row and column
-        int r = loc / 9;
+        int r = rowIndex(9);
         int c = loc % 9;
         int blockLoc = (r / 3) * 3 + c / 3;
 

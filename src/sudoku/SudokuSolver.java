@@ -1,21 +1,20 @@
 package sudoku;
+
+import java.util.*;
 /**
  * @author Patrick Chan
  * @see Grid
+ * @link https://www.jbcnconf.com/2019/infoTalk.html?id=5c3b3e4538da16698cf41b0a
  */
-//https://www.jbcnconf.com/2019/infoTalk.html?id=5c3b3e4538da16698cf41b0a
-
-import java.util.*;
-
 public class SudokuSolver {
 
-    private List<Grid> solutions = new ArrayList<Grid>();
+    private final List<Grid> solutions = new ArrayList<>();
 
     public SudokuSolver(int[][] numbers) {
         solve(Grid.create(numbers), solutions);
     }
 
-    public boolean isSolveable() {
+    public boolean isSolvable() {
         return !solutions.isEmpty();
     }
 

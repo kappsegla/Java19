@@ -1,10 +1,6 @@
 package sudoku;
 
-import advancedstream.Queryable;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,7 +22,7 @@ class SudokuSolverTest {
         var comparer = new SudokuSolverOld(grid);
         var refactored = new SudokuSolver(grid);
 
-        assertEquals(comparer.isSolveable(),refactored.isSolveable());
+        assertEquals(comparer.isSolveable(),refactored.isSolvable());
         assertEquals(comparer.isUniqueSolution(),refactored.isUniqueSolution());
         assertArrayEquals(comparer.getSolution(), refactored.getSolution());
     }
