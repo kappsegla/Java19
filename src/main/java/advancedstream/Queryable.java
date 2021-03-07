@@ -235,7 +235,7 @@ public interface Queryable<T> {
      */
     public default Queryable<T> sorted(Comparator<T> comparator) {
         List<T> list = new ArrayList<>();
-        while (tryAdvance(i -> list.add(i))) ;
+        while (tryAdvance(i -> list.add(i)));
         list.sort(comparator);
         return Queryable.of(list);
     }
