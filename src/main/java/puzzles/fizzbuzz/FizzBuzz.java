@@ -10,7 +10,7 @@ public class FizzBuzz {
     }
 
     public static String fizzBuzz(int value) {
-        return null;
+        return "";
     }
 }
 
