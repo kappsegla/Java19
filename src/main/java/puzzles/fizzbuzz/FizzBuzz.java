@@ -5,8 +5,12 @@ import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 public class FizzBuzz {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+    }
+
+    public static String fizzBuzz(int value) {
+        return null;
     }
 }
 
