@@ -8,10 +8,7 @@ public class Functional {
     }
 
     public void run(){
-
-
-
-
+        
     }
 
     void lambdaTest() {
